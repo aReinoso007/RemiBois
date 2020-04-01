@@ -1,0 +1,173 @@
+#Label Encoder
+import numpy as np
+from sklearn import preprocessing
+
+# Sample input labels
+#WorksClass
+
+workclasslist = ['Federal-gov', 'Local-gov', 'Never-worked', 'Private', 'Self-emp-inc', 'Self-emp-not-inc', 'State-gov',
+                 'Without-pay']
+
+educationList= ['10th', '11th', '12th', '1st-4th', '5th-6th', '7th-8th', '9th', 'Assoc-acdm', 'Assoc-voc', 'Bachelors',
+                'Doctorate', 'HS-grad', 'Masters', 'Preschool', 'Prof-school', 'Some-college']
+
+maritalStatusList= ['Divorced', 'Married-AF-spouse', 'Married-civ-spouse', 'Married-spouse-absent', 'Never-married',
+                    'Separated', 'Widowed']
+
+occupationList= ['Adm-clerical', 'Armed-Forces', 'Craft-repair', 'Exec-managerial', 'Farming-fishing', 'Handlers-cleaners',
+                 'Machine-op-inspct', 'Other-service', 'Priv-house-serv', 'Prof-specialty', 'Protective-serv', 'Sales',
+                 'Tech-support', 'Transport-moving']
+
+
+relationshipList= ['Husband', 'Not-in-family', 'Other-relative', 'Own-child', 'Unmarried', 'Wife']
+
+raceList= ['Amer-Indian-Eskimo', 'Asian-Pac-Islander', 'Black', 'Other', 'White']
+
+sexList= ['Female', 'Male']
+
+nativeCountryList= ['Cambodia', 'Canada', 'China', 'Columbia', 'Cuba', 'Dominican-Republic', 'Ecuador', 'El-Salvador',
+                    'England', 'France', 'Germany', 'Greece', 'Guatemala', 'Haiti', 'Holand-Netherlands', 'Honduras', 'Hong',
+                    'Hungary', 'India', 'Iran', 'Ireland', 'Italy', 'Jamaica', 'Japan', 'Laos', 'Mexico', 'Nicaragua',
+                    'Outlying-Us(Guam-USVI-etc)', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Puerto-Rico', 'Scotland',
+                    'South', 'Taiwan', 'Thailand', 'Trinadad&Tobago', 'United-States', 'Vietnam', 'Yugoslavia']
+
+
+# Create label encoder and fit the labels
+
+workclassCode = preprocessing.LabelEncoder()
+workclassCode.fit(workclasslist)
+
+educationCode = preprocessing.LabelEncoder()
+educationCode.fit(educationList)
+
+
+maritalStatusCode = preprocessing.LabelEncoder()
+maritalStatusCode.fit(maritalStatusList)
+
+
+occupationCode = preprocessing.LabelEncoder()
+occupationCode.fit(occupationList)
+
+
+relationshipCode = preprocessing.LabelEncoder()
+relationshipCode.fit(relationshipList)
+
+
+raceCode = preprocessing.LabelEncoder()
+raceCode.fit(raceList)
+
+
+sexCode = preprocessing.LabelEncoder()
+sexCode.fit(sexList)
+
+
+nativeCountryCode = preprocessing.LabelEncoder()
+nativeCountryCode.fit(nativeCountryList)
+
+
+# Print the mapping 
+print("\nworkclassCode:")
+for i, item in enumerate(workclassCode.classes_):
+    print(item, '-->', i)
+    
+    print("\neducationCode:")
+for i, item in enumerate(educationCode.classes_):
+    print(item, '-->', i)
+    
+    print("\nmaritalStatusCode:")
+for i, item in enumerate(maritalStatusCode.classes_):
+    print(item, '-->', i)
+    
+    print("\noccupationCode:")
+for i, item in enumerate(occupationCode.classes_):
+    print(item, '-->', i)
+    
+    print("\nrelationshipCode:")
+for i, item in enumerate(relationshipCode.classes_):
+    print(item, '-->', i)
+    
+    print("\nraceCode:")
+for i, item in enumerate(raceCode.classes_):
+    print(item, '-->', i)
+    
+    print("\nsexCode:")
+for i, item in enumerate(sexCode.classes_):
+    print(item, '-->', i)
+    
+    print("\nnativeCountryCode:")
+for i, item in enumerate(nativeCountryCode.classes_):
+    print(item, '-->', i)
+    
+    
+    
+    
+    
+    
+nuevaListWorkClass = []    
+nuevaListeducation = []
+nuevaListmaritalStatus = []
+nuevaListoccupation = []
+nuevaListrelationship = []
+nuevaListrace = []
+nuevaListsex = []
+nuevaListnativeCountry = []
+    
+
+    
+    
+for i,r in df.iterrows():
+    nuevaListWorkClass.append(r['workclass'].strip())   
+    nuevaListeducation.append(r['education'].strip()) 
+    nuevaListmaritalStatus.append(r['maritalStatus'].strip()) 
+    nuevaListoccupation.append(r['occupation'].strip()) 
+    nuevaListrelationship.append(r['relationship'].strip()) 
+    nuevaListrace.append(r['race'].strip()) 
+    nuevaListsex.append(r['sex'].strip()) 
+    nuevaListnativeCountry.append(r['nativeCountry'].strip()) 
+    
+
+    
+workclassCode = workclassCode.transform(nuevaListWorkClass)
+df['workclass'] = list(workclassCode)
+
+educationCode = educationCode.transform(nuevaListeducation)
+df['education'] = list(educationCode)
+
+maritalStatusCode = maritalStatusCode.transform(nuevaListmaritalStatus)
+df['marital-status'] = list(maritalStatusCode)
+
+occupationCode = workclassCode.transform(nuevaListoccupation)
+df['occupation'] = list(occupationCode)
+
+relationshipCode = relationshipCode.transform(nuevaListrelationship)
+df['relationship'] = list(relationshipCode)
+
+raceCode = raceCode.transform(nuevaListrace)
+df['race'] = list(raceCode)
+
+sexCode = sexCode.transform(nuevaListsex)
+df['sex'] = list(sexCode)
+
+nativeCountryCode = nativeCountryCode.transform(nuevaListnativeCountry)
+df['nativeCountry'] = list(nativeCountryCode)
+
+
+
+    
+    
+    
+    
+    
+    
+
+# CODIFICACIÓN DE DATOS
+#test_labels = ['Private', 'Self-emp-not-inc', 'Self-emp-inc']
+#encoded_values = encoder.transform(test_labels)
+#print("\nLabels =", test_labels)
+#print("Encoded values =", list(encoded_values))
+
+# DECODIFICACIÓN DE DATOS
+#encoded_values = [3, 5, 4]
+#decoded_list = encoder.inverse_transform(encoded_values)
+#print("\nEncoded values =", encoded_values)
+#print("Decoded labels =", list(decoded_list))
